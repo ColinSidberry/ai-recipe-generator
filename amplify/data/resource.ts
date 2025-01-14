@@ -1,4 +1,16 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
+import { defineAuth } from "@aws-amplify/backend";
+
+export const auth = defineAuth({
+  loginWith: {
+    email: {
+      verificationEmailStyle: "CODE",
+      verificationEmailSubject: "Welcome to the AI-Powered Recipe Generator!",
+      verificationEmailBody: (createCode) =>
+        `Use this code to confirm your account: ${createCode()}`,
+    },
+  },
+});
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
